@@ -1,0 +1,158 @@
+h1,
+h2,
+input,
+button,
+.create-account {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('background.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 10px;
+    color: #fff;
+    border: 2px solid #646363;
+    border-radius: 100px;
+    background: transparent;
+}
+
+.login-image {
+    margin-top: 20px;
+    width: 50%;
+    max-width: 1000px;
+    object-fit: cover;
+    border-radius: 10px;
+    justify-content: center;
+    margin-left: 25px;
+}
+
+.login-content {
+    flex: 1;
+    padding: 0 20px;
+    color: #ffff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-content h1 {
+    font-weight: bold;
+    font-family: "Fraunces", serif;
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.login-content h2 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 20px;
+    background: #737373;
+    text-align: center;
+    color: black;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #824853;
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background: #7c3441;
+}
+
+.create-account {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #ffffff;
+    text-align: center;
+}
+
+.create-account a {
+    color: #a56e56;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+    /* Styles for tablet and smaller screens */
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .login-image {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .login-content h1 {
+        font-size: 3vw;
+    }
+
+    .login-content h2 {
+        font-size: 2vw;
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Styles for mobile screens */
+    .container {
+        padding: 10px;
+    }
+
+    .login-image {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .login-content h1 {
+        font-size: 5vw;
+    }
+
+    .login-content h2 {
+        font-size: 3vw;
+        margin-left: 0;
+        text-align: center;
+    }
+}
