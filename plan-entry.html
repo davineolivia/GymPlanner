@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Check-Check Plan</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manjari:wght@100;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="plan-entry.css">
 </head>
 
@@ -21,7 +18,7 @@
             <nav>
                 <ul>
                     <li><a href="dashboard.html"><img src="home.png" alt="Home Icon"></a></li>
-                    <li><a href="plan-entry.css"><img src="schedule.png" alt="Schedule Icon"></a></li>
+                    <li><a href="plan-entry.html"><img src="schedule.png" alt="Schedule Icon"></a></li>
                     <li><a href="#"><img src="checklist.png" alt="Checklist Icon"></a></li>
                     <li><a href="#"><img src="settings.png" alt="Settings Icon"></a></li>
                 </ul>
@@ -34,7 +31,6 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nickname</th>
                             <th>Workout Type</th>
                             <th>Body Focus</th>
                             <th>Location</th>
@@ -43,20 +39,49 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Viaa</td>
-                            <td>Strength Training</td>
-                            <td>Upper Body</td>
-                            <td>Gym</td>
-                            <td>13 Oktober 2024</td>
-                            <td><button class="delete-btn">Hapus</button></td>
-                        </tr>
+                        <!-- Data akan ditambahkan di sini -->
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
+    <script>
+        const plans = JSON.parse(localStorage.getItem('plans')) || [];
+        const tbody = document.querySelector('tbody');
+
+        function capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        }
+
+        function formatDate(dateStr) {
+            const dateParts = dateStr.split("-");
+            return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+        }
+
+        if (plans.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6"><a class="no-underline" href="plan.html">Ayo Tambahkan Planmu, Hari Ini!</a></td></tr>';
+        } else {
+            plans.forEach((plan, index) => {
+                const formattedDate = formatDate(plan.Date);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${capitalizeFirstLetter(plan.WorkoutType)}</td>
+                    <td>${capitalizeFirstLetter(plan.BodyFocus)}</td>
+                    <td>${capitalizeFirstLetter(plan.Location)}</td>
+                    <td>${formattedDate}</td>
+                    <td><button class="delete-btn" onclick="deletePlan(${index})">Hapus</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function deletePlan(index) {
+            plans.splice(index, 1);
+            localStorage.setItem('plans', JSON.stringify(plans));
+            location.reload();
+        }
+    </script>
 </body>
 
 </html>

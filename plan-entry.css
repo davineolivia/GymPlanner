@@ -127,3 +127,7 @@ tbody tr:nth-child(even) {
 .delete-btn:hover {
     background-color: #9b2323;
 }
+
+.no-underline {
+    text-decoration: none;
+}
