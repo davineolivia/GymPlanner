@@ -61,13 +61,13 @@
                     </div>
                     <button type="submit">Submit My Plan's Today</button>
                 </form>
-                <!-- Toast notification -->
+                <!-- Toast Notification tanpa Framework -->
                 <div id="toast" class="toast">Your plan has been submitted!</div>
                 <script>
                     document.querySelector('form').addEventListener('submit', function (event) {
                         event.preventDefault();
 
-                        // Ambil nilai dari input form
+                        // Ambil nilai dari input form plan
                         const workoutType = document.getElementById('workout-type').value;
                         const bodyFocus = document.getElementById('body-focus').value;
                         const location = document.getElementById('location').value;
@@ -75,7 +75,7 @@
 
                         let plans = JSON.parse(localStorage.getItem('plans')) || [];
 
-                        // Tambahkan data baru ke dalam array
+                        // Tambah data baru ke dalam array
                         plans.push({
                             WorkoutType: workoutType,
                             BodyFocus: bodyFocus,
