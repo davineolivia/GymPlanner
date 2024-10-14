@@ -130,4 +130,5 @@ tbody tr:nth-child(even) {
 
 .no-underline {
     text-decoration: none;
+    color: black;
 }
