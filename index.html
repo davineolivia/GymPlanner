@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="index-background">
     <div class="index-container">
         <div class="index-text">
@@ -34,6 +36,20 @@
             <img src="image.png" alt="GymPlanner Image">
         </div>
     </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        document.querySelector('h1').textContent = 'Hi BodyShapers!';
+        document.querySelector('h1').style.fontSize = '6vw';
+        const h2Element = document.querySelector('h2');
+        h2Element.textContent = 'Shape Your Body to Hourglass or Sixpack with GymPlanner!';
+        h2Element.style.marginLeft = '0';
+        const linkLogin = document.querySelector('.oren');
+        linkLogin.setAttribute('href', 'login.html');
+        linkLogin.textContent = 'Take me to the login page';
+        const spanBiru = document.querySelector('.biru');
+        spanBiru.style.color = '#38b6ff';
+    </script>
 </body>
 
 </html>
