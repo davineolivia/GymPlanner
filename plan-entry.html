@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Data akan ditambahkan di sini -->
+                        <!-- Data dari plan html akan ditambahkan di sini -->
                     </tbody>
                 </table>
             </div>
@@ -75,7 +75,6 @@
                 tbody.appendChild(row);
             });
         }
-
         function deletePlan(index) {
             plans.splice(index, 1);
             localStorage.setItem('plans', JSON.stringify(plans));
