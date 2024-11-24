@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url('../img/background.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.back-home,
+.back-login {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #4d6170;
+    color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-home:hover,
+.back-login:hover {
+    background-color: #193d58;
+    transform: translateY(-2px);
+}
+
+.back-login {
+    left: 120px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.register-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    width: 800px;
+    height: 350px;
+    overflow: hidden;
+}
+
+/* Bagian kiri */
+.left-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: #fff;
+    width: 40%;
+}
+
+.left-section img {
+    max-width: 40%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.left-section h1 {
+    font-size: 50px;
+    margin: 0px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.left-section p {
+    margin: 0px;
+    font-size: 13px;
+    color: #d9d9d9;
+}
+
+/* Bagian kanan */
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    width: 50%;
+    margin-right: 20px;
+}
+
+.register-input,
+.register-button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+}
+
+.register-input {
+    background: #737373;
+    color: #000000;
+}
+
+.register-input::placeholder {
+    color: #3c3c3c;
+    opacity: 1;
+}
+
+.register-button {
+    margin-top: 15px;
+    background-color: #6c4049;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-button:hover {
+    background-color: rgb(128, 33, 60);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.already-account {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.already-account {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.already-account a {
+    color: #a56e56;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.already-account a {
+    text-decoration: underline;
+}
