@@ -156,3 +156,22 @@ form {
 .already-account a {
     text-decoration: underline;
 }
+
+/* Styling for the warning message */
+.warning-message {
+    background-color: none;
+    color: #ffffff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.warning-message a {
+    color: #a56e56;
+    text-decoration: none;
+}
+
+.warning-message a:hover {
+    text-decoration: underline;
+}
