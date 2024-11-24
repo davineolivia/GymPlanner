@@ -75,6 +75,41 @@
     <footer>
         © 2024 GymPlanner. All rights reserved. Your partner in fitness.
     </footer>
+
+    <!-- Toast/Snackbar -->
+    <div id="toast" class="toast">Hello BodyShapers, are you miss GymPlanner?</div>
+
+    <script>
+        // Penerapan DOM
+        // Tambahan Mengubah warna teks pada promo heading
+        document.querySelector('.promo h2').style.color = '#a56e56';
+
+        // Tambahan Mengubah teks pada h1
+        document.querySelector('h1').textContent = 'Welcome to GymPlanner';
+
+        // Tambahan event klik pada heading promo
+        const promoHeading = document.querySelector('.promo h1');
+        promoHeading.style.cursor = 'pointer'; // Mengubah kursor menjadi pointer
+        promoHeading.addEventListener('click', () => {
+            alert('Tidak ada apa-apa di sini, apa yang kamu harapkan?');
+        });
+
+        // Tambahan Toast
+        window.onload = function () {
+            setTimeout(function () {
+                showToast();
+            }, 1000);
+        };
+
+        // Fungsi untuk menampilkan toast
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show'); // Menampilkan toast
+            setTimeout(() => {
+                toast.classList.remove('show'); // Menghilangkan toast setelah 3 detik
+            }, 3000);
+        }
+    </script>
 </body>
 
 </html>

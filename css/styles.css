@@ -162,6 +162,47 @@ footer {
     background: #142234;
 }
 
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 /* Responsif */
 @media (max-width: 768px) {
     .promo {
