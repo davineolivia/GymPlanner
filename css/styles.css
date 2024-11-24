@@ -196,13 +196,12 @@ footer {
     color: #fff;
 }
 
-/* Toast Styling */
 .toast {
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
     background-color: #333;
-    color: #fff;
+    color: #f4f2f2;
     text-align: center;
     border-radius: 2px;
     padding: 16px;
@@ -213,7 +212,6 @@ footer {
     font-size: 17px;
 }
 
-/* Show the toast when it is active */
 .toast.show {
     visibility: visible;
     animation: fadeInOut 4s ease-in-out;
@@ -237,8 +235,6 @@ footer {
     }
 }
 
-
-/* Responsif */
 @media (max-width: 768px) {
     .promo {
         flex-direction: column;

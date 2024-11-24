@@ -159,6 +159,7 @@ form {
 
 /* Styling for the warning message */
 .warning-message {
+    font-family: 'Poppins', sans-serif;
     background-color: none;
     color: #ffffff;
     padding: 20px;
