@@ -12,10 +12,16 @@
 </head>
 
 <body>
+    <div id="warning-message" class="warning-message" style="display: none;">
+        <p>You have previously registered. Do you want to <a href="login.html">Log In</a> with your existing account or
+            <a href="javascript:void(0);" id="create-new-account">Create New Account</a>
+        </p>
+    </div>
+
     <div class="container">
         <a href="index.html" class="back-home">Home</a>
         <a href="login.html" class="back-login">Login</a>
-        <div class="register-card">
+        <div class="register-card" id="register-card">
             <!-- Bagian kiri -->
             <div class="left-section">
                 <img src="img/logo.png" alt="GymPlanner Best Logo" class="register-logo">
@@ -24,11 +30,12 @@
             </div>
             <!-- Bagian kanan -->
             <div class="right-section">
-                <form>
-                    <input type="text" placeholder="Full Name" class="register-input">
-                    <input type="email" placeholder="Email Address" class="register-input">
-                    <input type="password" placeholder="Password" class="register-input">
-                    <input type="password" placeholder="Confirm Password" class="register-input">
+                <form id="register-form">
+                    <input type="text" placeholder="Full Name" class="register-input" id="full-name" required>
+                    <input type="email" placeholder="Email Address" class="register-input" id="email" required>
+                    <input type="password" placeholder="Password" class="register-input" id="password" required>
+                    <input type="password" placeholder="Confirm Password" class="register-input" id="confirm-password"
+                        required>
                     <button type="submit" class="register-button">Create My Account</button>
                 </form>
                 <p class="already-account">
@@ -37,6 +44,32 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Check if data exists in localStorage for previously registered user
+        if (localStorage.getItem('userRegistered') === 'true') {
+            document.getElementById('warning-message').style.display = 'block';
+            document.getElementById('register-card').style.display = 'none';
+        }
+
+        // Handle "Create New Account" click
+        document.getElementById('create-new-account').addEventListener('click', function () {
+            // Clear localStorage if user wants to create a new account
+            localStorage.removeItem('userRegistered');
+            // Show register card again with empty fields
+            document.getElementById('register-card').style.display = 'flex';
+            document.getElementById('warning-message').style.display = 'none';
+            document.getElementById('register-form').reset(); // Reset form fields
+        });
+
+        // Handle form submission
+        document.getElementById('register-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Assuming the registration is successful, set the localStorage flag
+            localStorage.setItem('userRegistered', 'true');
+            alert('Registration Successful!'); // Add logic for successful registration
+        });
+    </script>
 </body>
 
 </html>
