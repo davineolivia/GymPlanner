@@ -76,8 +76,18 @@
         © 2024 GymPlanner. All rights reserved. Your partner in fitness.
     </footer>
 
+    <!-- PopUp Box -->
+    <div id="popup-box" class="popup-box">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>You Have Good News!</h2>
+            <p>let's scroll down this website to get something surprising</p>
+        </div>
+    </div>
+
     <!-- Toast/Snackbar -->
     <div id="toast" class="toast">Hello BodyShapers, are you miss GymPlanner?</div>
+
 
     <script>
         // Penerapan DOM
@@ -94,21 +104,33 @@
             alert('Tidak ada apa-apa di sini, apa yang kamu harapkan?');
         });
 
-        // Tambahan Toast
-        window.onload = function () {
-            setTimeout(function () {
-                showToast();
-            }, 1000);
-        };
+        // Fungsi untuk membuka popup
+        function openPopup() {
+            const popup = document.getElementById('popup-box');
+            popup.style.display = 'flex';
+        }
+
+        // Fungsi untuk menutup popup dan menampilkan toast
+        function closePopup() {
+            const popup = document.getElementById('popup-box');
+            popup.style.display = 'none';
+            // Tampilkan toast setelah popup ditutup
+            showToast();
+        }
 
         // Fungsi untuk menampilkan toast
         function showToast() {
             const toast = document.getElementById('toast');
             toast.classList.add('show'); // Menampilkan toast
             setTimeout(() => {
-                toast.classList.remove('show'); // Menghilangkan toast setelah 3 detik
-            }, 3000);
+                toast.classList.remove('show'); // Menghilangkan toast setelah 4 detik
+            }, 4000);
         }
+
+        // Tampilkan popup saat halaman pertama kali dimuat
+        window.onload = function () {
+            setTimeout(openPopup, 2000); // Popup muncul setelah 2 detik
+        };
     </script>
 </body>
 
