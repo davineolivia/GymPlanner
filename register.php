@@ -13,14 +13,14 @@
 
 <body>
     <div id="warning-message" class="warning-message" style="display: none;">
-        <p>You have previously registered. Do you want to <a href="login.html">Log In</a> with your existing account or
+        <p>You have previously registered. Do you want to <a href="login.php">Log In</a> with your existing account or
             <a href="javascript:void(0);" id="create-new-account">Create New Account</a>
         </p>
     </div>
 
     <div class="container">
-        <a href="index.html" class="back-home">Home</a>
-        <a href="login.html" class="back-login">Login</a>
+        <a href="index.php" class="back-home">Home</a>
+        <a href="login.php" class="back-login">Login</a>
         <div class="register-card" id="register-card">
             <!-- Bagian kiri -->
             <div class="left-section">
@@ -39,7 +39,7 @@
                     <button type="submit" class="register-button">Create My Account</button>
                 </form>
                 <p class="already-account">
-                    Already have an account? <a href="login.html">Log In</a>
+                    Already have an account? <a href="login.php">Log In</a>
                 </p>
             </div>
         </div>
