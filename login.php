@@ -1,3 +1,49 @@
+<?php
+// Mulai session
+session_start();
+
+// Cek apakah pengguna sudah login, jika sudah redirect ke dashboard
+if (isset($_SESSION['user'])) {
+    header('Location: dashboard.php');
+    exit;
+}
+
+// Simulasi data pengguna (Anda bisa mengganti ini dengan database)
+$users = [
+    'akaliezter' => '290405',
+    'fitlover' => 'gym2024'
+];
+
+// Variabel untuk menampilkan pesan error
+$error_message = '';
+
+// Proses form jika metode POST digunakan
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    // Validasi input kosong
+    if (empty($username) || empty($password)) {
+        $error_message = 'Username or Password cannot be empty!';
+    } elseif (!isset($users[$username]) || $users[$username] !== $password) {
+        // Validasi username dan password dengan data pengguna
+        $error_message = 'Incorrect Username or Password!';
+    } else {
+        // Jika validasi berhasil, buat session dan redirect ke dashboard
+        $_SESSION['user'] = $username;
+        header('Location: dashboard.php');
+        exit;
+    }
+}
+
+// Jika ada cookie, set session secara otomatis
+if (isset($_COOKIE['username'])) {
+    $_SESSION['user'] = $_COOKIE['username'];
+    header('Location: dashboard.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,11 +55,33 @@
         href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manjari:wght@100;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/login-styles.css">
+    <!-- Menambahkan JavaScript -->
+    <script>
+        // Function to validate login form
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
+
+            // Clear previous error messages
+            errorMessage.innerHTML = '';
+
+            // Validate if username or password is empty
+            if (username === '' || password === '') {
+                errorMessage.innerHTML = 'Username or Password cannot be empty!';
+                errorMessage.style.color = 'red';
+                return false;
+            }
+
+            // You can add more client-side validations if needed
+            return true;
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
-        <a href="index.html" class="back-home">Home</a>
+        <a href="index.php" class="back-home">Home</a>
         <div class="login-card">
             <div class="image-section">
                 <img src="img/image1.png" alt="Couple of BodyShapers" class="login-image">
@@ -21,44 +89,25 @@
             <div class="login-section">
                 <h1>Welcome Back, <br> BodyShapers</h1>
                 <p>Ready to crush your goals again?</p>
-                <form id="loginForm">
-                    <input type="text" id="username" placeholder="Username" class="login-input">
-                    <input type="password" id="password" placeholder="Password" class="login-input">
+                <!-- Form login -->
+                <form method="POST" action="" onsubmit="return validateForm()">
+                    <input type="text" id="username" name="username" placeholder="Username" class="login-input" required>
+                    <input type="password" id="password" name="password" placeholder="Password" class="login-input" required>
                     <button type="submit" class="login-button">Log Me In</button>
                 </form>
+                <!-- Link untuk membuat akun -->
                 <p class="create-account">
-                    Is this the first time for you? <a href="register.html">Create New Account</a>
+                    Is this the first time for you? <a href="register.php">Create New Account</a>
                 </p>
-                <p id="error-message" style="color: rgb(255, 116, 116); display: none;">Your Input is incorrect. Please try
-                    again.</p>
+                <!-- Pesan error -->
+                <?php if ($error_message): ?>
+                    <p id="error-message" style="color: rgb(255, 116, 116);">
+                        <?= htmlspecialchars($error_message) ?>
+                    </p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
-
-    <script>
-        // Get elements
-        const form = document.getElementById('loginForm');
-        const username = document.getElementById('username');
-        const password = document.getElementById('password');
-        const errorMessage = document.getElementById('error-message');
-
-        // Form submit event listener
-        form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission to check inputs
-
-            // Regular expression to check the validity of the input (only letters, numbers, '@', and '.')
-            const validEmailPattern = /^[a-zA-Z0]+$/;
-
-            // Check if the username and password match the pattern
-            if (!validEmailPattern.test(username.value) || !validEmailPattern.test(password.value)) {
-                errorMessage.style.display = 'block'; // Show error message
-            } else {
-                errorMessage.style.display = 'none'; // Hide error message
-                // If validation passes, proceed with form submission (or handle the login logic)
-                alert('Login successful'); // Replace this with actual login functionality
-            }
-        });
-    </script>
 </body>
 
 </html>
