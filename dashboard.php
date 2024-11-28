@@ -1,12 +1,25 @@
+<?php
+session_start();
+
+// Cek apakah user sudah login, jika belum redirect ke index.php
+if (!isset($_SESSION['user'])) {
+    header("Location: index.php");
+    exit();
+}
+
+// Variabel user
+$user = htmlspecialchars($_SESSION['user']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GymPlanner Dashboard</title>
+    <title>GymPlanner - Dashboard</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manjari:wght@100;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manjari:wght@100;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard-styles.css">
 </head>
@@ -17,28 +30,28 @@
         <aside class="sidebar">
             <!-- Logo -->
             <div class="logo">
-                <img src="img/logo.png" alt="GymPlanner Best Logo">
+                <img src="img/logo.png" alt="GymPlanner Logo">
             </div>
 
             <nav>
                 <ul>
                     <li class="active">
-                        <a href="dashboard.html">
+                        <a href="Dashboard.php">
                             <img src="img/home.png" alt="Dashboard Icon"> Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="schedule.html">
+                        <a href="schedule.php">
                             <img src="img/schedule.png" alt="Schedule Icon"> Schedule
                         </a>
                     </li>
                     <li>
-                        <a href="checklist.html">
+                        <a href="checklist.php">
                             <img src="img/checklist.png" alt="Checklist Icon"> Checklist
                         </a>
                     </li>
                     <li>
-                        <a href="settings.html">
+                        <a href="settings.php">
                             <img src="img/settings.png" alt="Settings Icon"> Settings
                         </a>
                     </li>
@@ -51,8 +64,8 @@
             <!-- Header -->
             <header>
                 <div class="welcome">
-                    <h1>Hi, Viaa!</h1>
-                    <p>Let's take a look at your activity today</p>
+                    <h1>Hi, <?= $user ?>!</h1>
+                    <p>Welcome back! Let's take a look at your activity today.</p>
                 </div>
                 <div class="header-actions">
                     <input type="text" placeholder="Search for health data">
@@ -80,10 +93,8 @@
                                 <span class="label">kcal intake</span>
                             </div>
                         </div>
-                        <p class="caption">The data above is the result of
-                            how many calories you burned for your workout today
-                            and also how much time you spent on the workout.
-                            So.. JUST KEEP FIGHTING, BODYSHAPERS!!</p>
+                        <p class="caption">The data above shows your workout activity today.
+                            Keep pushing forward, BodyShapers!</p>
                     </div>
 
                     <!-- Training Days -->
@@ -157,7 +168,7 @@
                             <div><span class="empty"></span> Empty: No activity on that day</div>
                         </div>
                     </div>
-
+                </div>
             </section>
 
             <section class="details">
