@@ -22,22 +22,22 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="dashboard.html">
+                        <a href="dashboard.php">
                             <img src="img/home.png" alt="Dashboard Icon"> Dashboard
                         </a>
                     </li>
                     <li>
-                        <a href="schedule.html">
+                        <a href="schedule.php">
                             <img src="img/schedule.png" alt="Schedule Icon"> Schedule
                         </a>
                     </li>
                     <li class="active">
-                        <a href="checklist.html">
+                        <a href="checklist.php">
                             <img src="img/checklist.png" alt="Checklist Icon"> Checklist
                         </a>
                     </li>
                     <li>
-                        <a href="settings.html">
+                        <a href="settings.php">
                             <img src="img/settings.png" alt="Settings Icon"> Settings
                         </a>
                     </li>
