@@ -1,3 +1,15 @@
+<?php
+// Mulai session
+session_start();
+
+// Cek apakah pengguna sudah login
+if (isset($_SESSION['user'])) {
+    // Jika sudah login, redirect ke dashboard
+    header('Location: dashboard.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +24,8 @@
 </head>
 
 <body>
+    <?php include 'header.php'; ?> <!-- Menyisipkan header -->
+
     <section class="intro">
         <div class="intro-text">
             <h1>GymPlanner</h1>
@@ -29,7 +43,7 @@
             </ul>
             <p>
                 Let’s shape your dream body with us—login to your account or create a new account now!
-                <a href="login.html" style="color: #a56e56;">bring me to login page now.</a>
+                <a href="login.php" style="color: #a56e56;">bring me to login page now.</a>
             </p>
         </div>
         <div class="intro-image">
@@ -72,9 +86,7 @@
         </div>
     </section>
 
-    <footer>
-        © 2024 GymPlanner. All rights reserved. Your partner in fitness.
-    </footer>
+    <?php include 'footer.php'; ?> <!-- Menyisipkan footer -->
 
     <!-- PopUp Box -->
     <div id="popup-box" class="popup-box">
@@ -87,7 +99,6 @@
 
     <!-- Toast/Snackbar -->
     <div id="toast" class="toast">Hello BodyShapers, are you miss GymPlanner?</div>
-
 
     <script>
         // Penerapan DOM
