@@ -88,7 +88,10 @@ $conn->close();
 
         <div class="content">
             <h1>Schedule</h1>
-            <button id="buttonadd">+ Add Schedule</button>
+            <div class="action-buttons">
+                <button id="buttonadd">+ Add Schedule</button>
+                <button id="buttonprint">Print</button>
+            </div>
             <div class="form-container" id="formContainer" style="display: none;">
                 <form id="scheduleForm">
                     <label for="activity">Activity:</label>
@@ -142,12 +145,17 @@ $conn->close();
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const buttonAdd = document.getElementById("buttonadd");
+            const buttonPrint = document.getElementById("buttonprint");
             const formContainer = document.getElementById("formContainer");
             const scheduleForm = document.getElementById("scheduleForm");
             const scheduleTableBody = document.getElementById("scheduleTableBody");
 
             buttonAdd.addEventListener("click", () => formContainer.style.display = "block");
             document.getElementById("cancelButton").addEventListener("click", () => formContainer.style.display = "none");
+
+            buttonPrint.addEventListener("click", () => {
+                window.open("generate_pdf.php", "_blank");
+            });
 
             scheduleForm.addEventListener("submit", async function (event) {
                 event.preventDefault();
@@ -157,7 +165,7 @@ $conn->close();
 
                 if (data.success) {
                     alert("Schedule added!");
-                    location.reload(); // Refresh untuk melihat perubahan
+                    location.reload();
                 } else {
                     alert("Error: " + data.error);
                 }
