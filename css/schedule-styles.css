@@ -104,34 +104,39 @@ button#buttonadd:hover {
     background-color: #946d5c;
 }
 
-
 /* Form Container */
 .form-container {
     display: none;
-    background: #f9f9f9;
+    /* Initially hidden, shown when "Add Schedule" is clicked */
+    background: #aa747e;
+    /* Light pink background */
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid #000000;
+    border-radius: 20px;
     margin-bottom: 20px;
 }
 
 .form-container h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    color: #ffffff;
 }
 
 .form-container label {
     display: block;
     margin-bottom: 5px;
-    color: #555;
+    color: #000000;
 }
 
 .form-container input {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 5px;
+    background-color: #cccccc;
+    padding-right: 0px;
 }
+
 
 .form-container button {
     padding: 10px 15px;
@@ -143,21 +148,26 @@ button#buttonadd:hover {
 
 .form-container button[type="submit"] {
     background-color: #28a745;
+    /* Green background for submit */
     color: white;
 }
 
 .form-container button[type="submit"]:hover {
     background-color: #218838;
+    /* Darker green on hover */
 }
 
 .form-container button#cancelButton {
     background-color: #dc3545;
+    /* Red background for cancel */
     color: white;
 }
 
 .form-container button#cancelButton:hover {
     background-color: #c82333;
+    /* Darker red on hover */
 }
+
 
 /* Table Styles */
 table {
@@ -179,11 +189,11 @@ table th {
 }
 
 table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #59768c;
 }
 
 table tr:hover {
-    background-color: #4d6170;
+    background-color: #4a5b67;
 }
 
 /* Delete Button */
