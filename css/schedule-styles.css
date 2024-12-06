@@ -87,7 +87,6 @@ body {
 /* Button to Add Schedule */
 button#buttonadd {
     align-self: flex-start;
-    /* Menempatkan tombol di kiri */
     background-color: #b88671;
     color: white;
     border: none;
@@ -97,12 +96,35 @@ button#buttonadd {
     border-radius: 25px;
     transition: background-color 0.3s;
     margin-top: 10px;
-    /* Tambahkan sedikit jarak di atas tombol */
 }
 
-button#buttonadd:hover {
+/* Tombol Print dengan gaya yang sama */
+button#buttonprint {
+    align-self: flex-start;
+    background-color: #b88671;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+/* Hover effect untuk kedua tombol */
+button#buttonadd:hover,
+button#buttonprint:hover {
     background-color: #946d5c;
 }
+
+/* Menempatkan tombol-tombol bersebelahan */
+button {
+    display: inline-block;
+    margin-right: 5px;
+    /* Memberikan jarak antar tombol */
+}
+
 
 /* Form Container */
 .form-container {
