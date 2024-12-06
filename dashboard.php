@@ -9,6 +9,38 @@ if (!isset($_SESSION['user'])) {
 
 // Variabel user
 $user = htmlspecialchars($_SESSION['user']);
+
+// Koneksi ke database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "gymplanner";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Cek koneksi
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Ambil jadwal untuk bulan ini
+$currentMonth = date('m');
+$currentYear = date('Y');
+$query = $conn->prepare(
+    "SELECT DAY(date) as day, date FROM schedules 
+     WHERE MONTH(date) = ? AND YEAR(date) = ?"
+);
+$query->bind_param("ii", $currentMonth, $currentYear);
+$query->execute();
+$result = $query->get_result();
+
+$schedules = [];
+$today = date('Y-m-d');
+
+while ($row = $result->fetch_assoc()) {
+    $status = ($row['date'] < $today) ? 'completed' : (($row['date'] === $today) ? 'scheduled' : '');
+    $schedules[$row['day']] = $status;
+}
 ?>
 
 <!DOCTYPE html>
@@ -119,47 +151,27 @@ $user = htmlspecialchars($_SESSION['user']);
 
                         <div class="calendar">
                             <!-- Header of the Calendar -->
-                            <div class="day-name">Sun</div>
-                            <div class="day-name">Mon</div>
-                            <div class="day-name">Tue</div>
-                            <div class="day-name">Wed</div>
-                            <div class="day-name">Thu</div>
-                            <div class="day-name">Fri</div>
-                            <div class="day-name">Sat</div>
+                            <?php
+    $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
+    $firstDayOfWeek = date('w', strtotime("$currentYear-$currentMonth-01"));
 
-                            <!-- Dates of the Calendar -->
-                            <div class="day empty"></div>
-                            <div class="day empty"></div>
-                            <div class="day">1</div>
-                            <div class="day">2</div>
-                            <div class="day">3</div>
-                            <div class="day">4</div>
-                            <div class="day">5</div>
-                            <div class="day">6</div>
-                            <div class="day">7</div>
-                            <div class="day">8</div>
-                            <div class="day">9</div>
-                            <div class="day">10</div>
-                            <div class="day">11</div>
-                            <div class="day">12</div>
-                            <div class="day">13</div>
-                            <div class="day">14</div>
-                            <div class="day">15</div>
-                            <div class="day">16</div>
-                            <div class="day">17</div>
-                            <div class="day">18</div>
-                            <div class="day">19</div>
-                            <div class="day">20</div>
-                            <div class="day">21</div>
-                            <div class="day">22</div>
-                            <div class="day">23</div>
-                            <div class="day">24</div>
-                            <div class="day">25</div>
-                            <div class="day">26</div>
-                            <div class="day">27</div>
-                            <div class="day">28</div>
-                            <div class="day completed">29</div>
-                            <div class="day scheduled">30</div>
+    // Tampilkan nama hari
+    $days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    foreach ($days as $dayName) {
+        echo "<div class='day-name'>$dayName</div>";
+    }
+
+    // Tambahkan sel kosong sebelum tanggal pertama
+    for ($i = 0; $i < $firstDayOfWeek; $i++) {
+        echo "<div class='day empty'></div>";
+    }
+
+    // Tampilkan tanggal
+    for ($day = 1; $day <= $daysInMonth; $day++) {
+        $class = isset($schedules[$day]) ? $schedules[$day] : '';
+        echo "<div class='day $class'>$day</div>";
+    }
+    ?>
                         </div>
 
                         <div class="calendar-key">
@@ -210,7 +222,7 @@ $user = htmlspecialchars($_SESSION['user']);
                             <div>4/8 sessions completed</div>
                         </li>
                         <li>
-                            <div>Ab Exercises</div>
+                            <div>Abs Exercises</div>
                             <div>3/5 sessions completed</div>
                         </li>
                     </ul>
