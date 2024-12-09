@@ -157,6 +157,23 @@ button#buttonprint:hover {
     background-color: #946d5c;
 }
 
+button#buttoncheck {
+    align-self: flex-start;
+    background-color: #b88671;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button#buttoncheck:hover {
+    background-color: #946d5c;
+}
+
 
 /* Submit Button */
 .submit-btn {
@@ -198,3 +215,78 @@ button#buttonprint:hover {
     visibility: visible;
 }
 
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    border: 2px solid #000000;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #aa747e;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #59768c;
+}
+
+table tr:hover {
+    background-color: #4a5b67;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.edit-btn {
+    background-color: #2f4fc2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.edit-btn:hover {
+    background-color: #4465de;
+}
+
+/* Button to Back */
+button#buttonback {
+    align-self: flex-start;
+    background-color: #b88671;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+/* Hover effect untuk kedua tombol */
+button#buttonback:hover {
+    background-color: #946d5c;
+}
