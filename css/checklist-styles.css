@@ -140,6 +140,24 @@ select:invalid {
     color: #b9b9b9;
 }
 
+button#buttonprint {
+    align-self: flex-start;
+    background-color: #b88671;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+button#buttonprint:hover {
+    background-color: #946d5c;
+}
+
+
 /* Submit Button */
 .submit-btn {
     margin-top: 20px;
@@ -159,3 +177,24 @@ select:invalid {
 .submit-btn:hover {
     background-color: #ff8c00;
 }
+
+.toast {
+    position: fixed; /* Tetap pada posisi yang sama saat halaman di-scroll */
+    bottom: 20px; /* Jarak dari bagian bawah halaman */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+}
+
