@@ -58,12 +58,16 @@ unset($_SESSION['toast']); // Hapus pesan toast agar tidak ditampilkan lagi
             <header>
                 <h1>Checklist</h1>
                 <p>Track your hydration and workouts!</p>
+                <div class="button-container">
+                    <button id="buttoncheck">Check Data</button>
+                    <button id="buttonprint">Print Data</button>
+                </div>
             </header>
             <!-- Hydration Section -->
             <div class="checklist-container">
                 <section class="checklist hydration">
                     <h2>Have You Had a Drink Today?</h2>
-                    <form id="hydration-form" onsubmit="submitHydration(event)">
+                    <form id="hydration-form" action="save_hydration.php" method="post">
                         <label for="morning-water">Apakah Pagi ini Kamu Sudah Minum? Berapa Liter?</label>
                         <input type="number" id="morning-water" name="morning-water" min="0" step="0.1" placeholder="contoh: 1.5">
 
@@ -86,7 +90,7 @@ unset($_SESSION['toast']); // Hapus pesan toast agar tidak ditampilkan lagi
                 <!-- Workout Section -->
                 <section class="checklist workout">
                     <h2>Which Body Parts Have You Trained?</h2>
-                    <form id="workout-form" onsubmit="submitWorkout(event)">
+                    <form id="workout-form" action="save_workout.php" method="post">
                         <label for="body-parts">Bagian Tubuh yang Dilatih:</label>
                             <select id="body-parts" name="body-parts">
                                 <option value="" disabled selected>Pilih bagian tubuh</option>
@@ -114,39 +118,23 @@ unset($_SESSION['toast']); // Hapus pesan toast agar tidak ditampilkan lagi
 <div id="toast" class="toast"><?php echo htmlspecialchars($toastMessage); ?></div>
     </div>
     <script>
-    // Fungsi untuk menangani submit hydration
-    function submitHydration(event) {
-        event.preventDefault();
-        const formData = new FormData(document.getElementById('hydration-form'));
+        document.getElementById('buttoncheck').addEventListener('click', function () {
+        window.location.href = 'checklist-tables.php';
+    });
+    
+    document.addEventListener("DOMContentLoaded", function() {
+    const toast = document.getElementById("toast");
 
-        fetch('http://localhost:8000/api/hydration', {
-            method: 'POST',
-            body: formData,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                alert(data.message); // Tampilkan pesan dari respons API
-            })
-            .catch((error) => console.error('Error:', error));
+    if (toast.textContent.trim() !== "") { // Periksa apakah ada pesan
+        toast.classList.add("show");
+
+        // Sembunyikan Toast setelah 3 detik
+        setTimeout(function() {
+            toast.classList.remove("show");
+        }, 3000);
     }
-
-    // Fungsi untuk menangani submit workout
-    function submitWorkout(event) {
-        event.preventDefault();
-        const formData = new FormData(document.getElementById('workout-form'));
-
-        fetch('http://localhost:8000/api/workout', {
-            method: 'POST',
-            body: formData,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                alert(data.message); // Tampilkan pesan dari respons API
-            })
-            .catch((error) => console.error('Error:', error));
-    }
+});
 </script>
-
 
 </body>
 </html>
