@@ -1,3 +1,11 @@
+<?php
+session_start(); // Mulai sesi
+
+// Cek apakah ada pesan toast dari save_hydration.php
+$toastMessage = isset($_SESSION['toast']) ? $_SESSION['toast'] : '';
+unset($_SESSION['toast']); // Hapus pesan toast agar tidak ditampilkan lagi
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,25 +59,24 @@
                 <h1>Checklist</h1>
                 <p>Track your hydration and workouts!</p>
             </header>
-
             <!-- Hydration Section -->
             <div class="checklist-container">
                 <section class="checklist hydration">
                     <h2>Have You Had a Drink Today?</h2>
-                    <form id="hydration-form">
+                    <form id="hydration-form" onsubmit="submitHydration(event)">
                         <label for="morning-water">Apakah Pagi ini Kamu Sudah Minum? Berapa Liter?</label>
-                        <input type="number" id="morning-water" min="0" step="0.1" placeholder="contoh: 1.5">
+                        <input type="number" id="morning-water" name="morning-water" min="0" step="0.1" placeholder="contoh: 1.5">
 
                         <label for="afternoon-water">Apakah Siang ini Kamu Sudah Minum? Berapa Liter?</label>
-                        <input type="number" id="afternoon-water" min="0" step="0.1" placeholder="contoh: 1.5">
+                        <input type="number" id="afternoon-water" name="afternoon-water" min="0" step="0.1" placeholder="contoh: 1.5">
 
                         <label for="evening-water">Apakah Sore ini Kamu Sudah Minum? Berapa Liter?</label>
-                        <input type="number" id="evening-water" min="0" step="0.1" placeholder="contoh: 2.0">
+                        <input type="number" id="evening-water" name="evening-water" min="0" step="0.1" placeholder="contoh: 2.0">
 
                         <label for="total-water">Apakah total sudah mencapai 8 liter?</label>
-                        <select id="total-water">
-                            <option value="yes">Ya</option>
-                            <option value="no">Tidak</option>
+                        <select id="total-water" name="total-water">
+                        <option value="yes">Ya</option>
+                        <option value="no">Tidak</option>
                         </select>
 
                         <button type="submit" class="submit-btn">Submit Hydration</button>
@@ -79,32 +86,67 @@
                 <!-- Workout Section -->
                 <section class="checklist workout">
                     <h2>Which Body Parts Have You Trained?</h2>
-                    <form id="workout-form">
+                    <form id="workout-form" onsubmit="submitWorkout(event)">
                         <label for="body-parts">Bagian Tubuh yang Dilatih:</label>
-                        <select id="body-parts">
-                            <option value="" disabled selected>Pilih bagian tubuh</option>
-                            <option value="arms">Lengan</option>
-                            <option value="chest">Dada</option>
-                            <option value="back">Punggung</option>
-                            <option value="legs">Kaki</option>
-                            <option value="core">Perut</option>
-                        </select>
+                            <select id="body-parts" name="body-parts">
+                                <option value="" disabled selected>Pilih bagian tubuh</option>
+                                <option value="arms">Lengan</option>
+                                <option value="chest">Dada</option>
+                                <option value="back">Punggung</option>
+                                <option value="legs">Kaki</option>
+                                <option value="core">Perut</option>
+                            </select>
 
                         <label for="reps">Berapa Kali Perulangan:</label>
-                        <input type="number" id="reps" min="0" placeholder="contoh: 15">
+                        <input type="number" id="reps" name="reps" min="0" placeholder="contoh: 15">
 
                         <label for="duration">Durasi Workout (jam):</label>
-                        <input type="number" id="duration" min="0" step="0.1" placeholder="contoh: 1.5">
+                        <input type="number" id="duration" name="duration" min="0" step="0.1" placeholder="contoh: 1.5">
 
                         <label for="calories">Kalori yang Dibakar (kcal):</label>
-                        <input type="number" id="calories" min="0" placeholder="contoh: 500">
+                        <input type="number" id="calories" name="calories" min="0" placeholder="contoh: 500">
 
                         <button type="submit" class="submit-btn">Submit Workout</button>
                     </form>
                 </section>
             </div>
+            <!-- Tempat Toast akan muncul -->
+<div id="toast" class="toast"><?php echo htmlspecialchars($toastMessage); ?></div>
     </div>
+    <script>
+    // Fungsi untuk menangani submit hydration
+    function submitHydration(event) {
+        event.preventDefault();
+        const formData = new FormData(document.getElementById('hydration-form'));
+
+        fetch('http://localhost:8000/api/hydration', {
+            method: 'POST',
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                alert(data.message); // Tampilkan pesan dari respons API
+            })
+            .catch((error) => console.error('Error:', error));
+    }
+
+    // Fungsi untuk menangani submit workout
+    function submitWorkout(event) {
+        event.preventDefault();
+        const formData = new FormData(document.getElementById('workout-form'));
+
+        fetch('http://localhost:8000/api/workout', {
+            method: 'POST',
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                alert(data.message); // Tampilkan pesan dari respons API
+            })
+            .catch((error) => console.error('Error:', error));
+    }
+</script>
+
 
 </body>
-
 </html>
